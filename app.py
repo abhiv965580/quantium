@@ -5,6 +5,11 @@ from dash import Dash, html, dcc, Input, Output
 import plotly.express as px
 import pandas as pd
 
+col = {
+    'primary': "#ADEB73",
+    'secondary': "#5DD4B7",
+    'font': "#AFBBFA"
+}
 app = Dash(__name__)
 
 # assume you have a "long-form" data frame
@@ -15,6 +20,11 @@ data = data.sort_values(by='Date')
 
 def line_chart(data):
     fig = px.line(data, x='Date', y='Sales', title='Sales of Pink Morsel')
+    fig.update_layout(
+        plot_bgcolor=col['secondary'],
+        paper_bgcolor=col['primary'],
+        font_color=col['font']
+    )
     return fig
 
 
@@ -24,7 +34,12 @@ visualizer = dcc.Graph(
 )
 header = html.H1(
     "Region Wise Pink Morsel Chart",
-    id="header"
+    id="header",
+    style={
+        "background-color": col['primary'],
+        "color": col['font'],
+        "border-radius": "30px"
+    }
 )
 reg_picker = dcc.RadioItems(
     ['north', 'east', 'west', 'south', 'all'],
@@ -52,7 +67,12 @@ app.layout = html.Div(
         header,
         visualizer,
         reg_picker
-    ]
+    ],
+    style={
+        'textAlign': "center",
+        "background-color": col['secondary'],
+        'border-radius': "30px"
+    }
 )
 
 if __name__ == '__main__':
