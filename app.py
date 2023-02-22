@@ -6,9 +6,9 @@ import plotly.express as px
 import pandas as pd
 
 col = {
-    'primary': "#ADEB73",
-    'secondary': "#5DD4B7",
-    'font': "#AFBBFA"
+    'primary': "#6EFAD1",
+    'secondary': "#F7A8FF",
+    'font': "#4A48FA"
 }
 app = Dash(__name__)
 
